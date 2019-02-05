@@ -10,7 +10,7 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { Header } from '../elements'
-import { getAllNotifications } from '../actions'
+import { getAllNotifications, getNotificationsByUser, getAllUsers } from '../actions'
 
 const NotificationHeader = () => (
     <Row className="mx-3 bg-secondary text-white">
@@ -37,7 +37,11 @@ const NotificationRow = ({ title, text }) => (
 class NotificationsList extends PureComponent {
 
     state = {
-        userId: 0
+        userId: 0,
+    }
+
+    componentDidMount() {
+        this.props.getAllUsers()
     }
 
     onChangeUser = event => {
@@ -49,7 +53,14 @@ class NotificationsList extends PureComponent {
             }))
     }
 
-    getAllNotifications = () => this.props.getAllNotifications()
+    getAllNotifications = () => {
+        if (this.state.userId === 0) {
+            this.props.getAllNotifications()
+        }
+        else {
+            this.props.getNotificationsByUser(this.state.userId)
+        }
+    }
 
     render() {
         return (
@@ -66,10 +77,9 @@ class NotificationsList extends PureComponent {
                                         id="usersSelect"
                                         onChange={this.onChangeUser}>
                                         <option value="0">All</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
+                                        {this.props.users.map(x => (
+                                            <option value={x}>{x}</option>
+                                        ))}
                                     </Input>
                                 </FormGroup>
                             </Col>
@@ -92,7 +102,13 @@ class NotificationsList extends PureComponent {
 }
 
 const mapStateToProps = ({ notifications }) => ({
-    notifications: notifications.notificationsList
+    notifications: notifications.notificationsList,
+    users: notifications.usersList,
 })
 
-export default connect(mapStateToProps, { getAllNotifications })(NotificationsList)
+export default connect(mapStateToProps,
+    {
+        getAllNotifications,
+        getAllUsers,
+        getNotificationsByUser
+    })(NotificationsList)
