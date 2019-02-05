@@ -1,68 +1,46 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## How to run
 
-In the project directory, you can run:
+Make sure yo have an up to date version of node and mpn installed.
 
-### `npm start`
+The best way to run the project is to use yarn
+```
+>npm i -g yarn
+```
+and then from the repository folder:
+```
+>yarn
+>yarn start
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+this will start the development server in:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+http://localhost:3000/
 
-### `npm test`
+## Description
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+this is a very simple web page that uses `react` + `redux`, combined with other
+dependecies like `redux-thunk` to load a list of notifications from the api created
+in the other repository:
 
-### `npm run build`
+https://github.com/josep-almolda/assesment
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+notifications can be retrieved by specific user, or you can get all of them selecting `All`
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Improvements and decisions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The project has been coded maintaining a good code structure, as a good template for future
+expansion if that was the case, but because the time constraints there are a number of things
+that could be added
+- Tests with `jest`, or another framework
+- Support for types using `Flow` or implementing `PropTypes` in the components
+- React Router to navigate between different screens (there's only one screen in the project)
+- I added support for the different http verbs for completeness, but only `GET` is used in the project
+- I am using `redux-thunk` because I think the action creators are a very good way to call asynchronous
+actions, especially when combined with the `async` and `await` keywords, but other frameworks like `saga`
+could be used that give more features to the API communication
+- the API url is set by default to 'https://localhost:44309/api/', but an environment variable `API_BASE_URL`
+can be used to override that value
+- If this was a bigger project, I'd recommend using `styled-components` combined with the `reacstrap` components
+already used in the project to create a library of reusable components through all the app
