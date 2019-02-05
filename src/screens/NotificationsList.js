@@ -11,28 +11,7 @@ import {
 import { connect } from 'react-redux'
 import { Header } from '../elements'
 import { getAllNotifications, getNotificationsByUser, getAllUsers } from '../actions'
-
-const NotificationHeader = () => (
-    <Row className="mx-3 bg-secondary text-white">
-        <Col className="text-center border-right border-white">
-            Title
-        </Col>
-        <Col className="text-center">
-            Text
-        </Col>
-    </Row>
-)
-
-const NotificationRow = ({ title, text }) => (
-    <Row className="mx-3 pl-3">
-        <Col>
-            {title}
-        </Col>
-        <Col>
-            {text}
-        </Col>
-    </Row>
-)
+import { NotificationsHeader, NotificationRow } from './Elements'
 
 class NotificationsList extends PureComponent {
 
@@ -53,7 +32,7 @@ class NotificationsList extends PureComponent {
             }))
     }
 
-    getAllNotifications = () => {
+    getNotifications = () => {
         if (this.state.userId === 0) {
             this.props.getAllNotifications()
         }
@@ -84,14 +63,14 @@ class NotificationsList extends PureComponent {
                                 </FormGroup>
                             </Col>
                             <Col className="pt-5">
-                                <Button onClick={this.getAllNotifications}>
+                                <Button onClick={this.getNotifications}>
                                     Refresh
                                 </Button>
                             </Col>
                         </Row>
                     </Col>
                 </Row>
-                <NotificationHeader />
+                <NotificationsHeader />
                 {this.props.notifications.map(x => (
                     <NotificationRow title={x.title} text={x.text} />
                 ))

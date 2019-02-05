@@ -23,9 +23,7 @@ class HTTP {
         headers: this.getHeaders()
       })
       return res
-    }
-
-    )
+    })
 
   post = (url, data = {}) =>
     fetchWrapper(() =>
