@@ -42,3 +42,5 @@ actions, especially when combined with the `async` and `await` keywords, but oth
 could be used that give more features to the API communication
 - the API url is set by default to 'https://localhost:44309/api/', but an environment variable `API_BASE_URL`
 can be used to override that value
+- If this was a bigger project, I'd recommend using `styled-components` combined with the `reacstrap` components
+already used in the project to create a library of reusable components through all the app
