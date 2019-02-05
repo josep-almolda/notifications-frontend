@@ -1,0 +1,1 @@
+export const SET_ACTION_LIST = 'SET_ACTION_LIST'
