@@ -1,5 +1,4 @@
 import humps from 'humps'
-//import { fetch } from 'whatwg-fetch'
 import { fetchWrapper } from './fetchWrapper'
 
 // use local api if no url defined in env
