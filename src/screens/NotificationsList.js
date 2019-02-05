@@ -35,11 +35,25 @@ const NotificationRow = ({ title, text }) => (
 )
 
 class NotificationsList extends PureComponent {
-    nothing = () => null
+
+    state = {
+        userId: 0
+    }
+
+    onChangeUser = event => {
+        const selectedValue = event.target.value
+        this.setState(prevState => (
+            {
+                ...prevState,
+                userId: selectedValue
+            }))
+    }
+
+    getAllNotifications = () => this.props.getAllNotifications()
 
     render() {
         return (
-            <Container fluid className="h-100 p-0">
+            <Container fluid className="h-100 p-0" >
                 <Header />
                 <Row>
                     <Col className="">
@@ -47,17 +61,20 @@ class NotificationsList extends PureComponent {
                             <Col className="pl-5 pt-3">
                                 <FormGroup>
                                     <Label for="exampleSelect">Select a user</Label>
-                                    <Input type="select" name="select" id="exampleSelect">
-                                        <option>All</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <Input type="select"
+                                        name="users"
+                                        id="usersSelect"
+                                        onChange={this.onChangeUser}>
+                                        <option value="0">All</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
                                     </Input>
                                 </FormGroup>
                             </Col>
                             <Col className="pt-5">
-                                <Button onClick={this.props.getAllNotifications}>
+                                <Button onClick={this.getAllNotifications}>
                                     Refresh
                                 </Button>
                             </Col>
@@ -67,8 +84,9 @@ class NotificationsList extends PureComponent {
                 <NotificationHeader />
                 {this.props.notifications.map(x => (
                     <NotificationRow title={x.title} text={x.text} />
-                ))}
-            </Container>
+                ))
+                }
+            </Container >
         )
     }
 }
