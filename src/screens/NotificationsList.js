@@ -16,7 +16,7 @@ import { NotificationsHeader, NotificationRow } from './Elements'
 class NotificationsList extends PureComponent {
 
     state = {
-        userId: 0,
+        userId: "0",
     }
 
     componentDidMount() {
@@ -33,7 +33,7 @@ class NotificationsList extends PureComponent {
     }
 
     getNotifications = () => {
-        if (this.state.userId === 0) {
+        if (this.state.userId === "0") {
             this.props.getAllNotifications()
         }
         else {
@@ -71,7 +71,7 @@ class NotificationsList extends PureComponent {
                     </Col>
                 </Row>
                 <NotificationsHeader />
-                {this.props.notifications.map(x => (
+                {this.props.notifications && this.props.notifications.map(x => (
                     <NotificationRow title={x.title} text={x.text} />
                 ))
                 }
